@@ -117,7 +117,7 @@ def get_caption(uuid):
           "Smooth Edge: Refers to the meeting of two or more surfaces at a gentle angle near the contact point, creating a smooth transition without any apparent break or angle. This type of edge does not reflect light as much as a sharp edge, thus usually presenting a softer and more natural appearance during rendering."
           "2. estimate the surface smooth score of the 3D model. "
           "3. Provide the detailed surface descriptions/caption of each part of 3D model. Please try to include information such as the category, structure etc."
-          #"4. Please generate the character tag, one out of (character, non-character) and if character, specify (static, posed)."
+          "4. Please generate the character tag, one out of (character, non-character) and if character, specify (static, posed)."
           ),
           "input: ",
           # example 1
@@ -127,7 +127,7 @@ def get_caption(uuid):
           "score: 0.5 ",
           # "expain:  mix of hard and smooth edges ",
           "expain: sharp hat, smooth face, smooth body and cloth, hard boot ",
-          #"character: character-posed ",
+          "character: character-posed ",
           "input:  ",
           # example 2
           eg_image_parts[1],
@@ -135,7 +135,7 @@ def get_caption(uuid):
           "surface: sharp ",
           "score: 0.0 ",
           "expain: sharp surface computer, hard cubes ",
-          #"character: non-character ",
+          "character: non-character ",
           "input:  ",
           # example 3
           eg_image_parts[2],
@@ -143,7 +143,7 @@ def get_caption(uuid):
           "surface: sharp ",
           "score: 0.0 ",
           "expain: hard boat, sharp bottom ",
-          #"character: non-character ",
+          "character: non-character ",
           "input:  ",
           # example 4
           eg_image_parts[3],
@@ -151,21 +151,21 @@ def get_caption(uuid):
           "surface: smooth ",
           "score: 1.0 "
           "expain: smooth surface cloth, soft sweater ",
-          #"character: non-character ",
+          "character: non-character ",
           "input:  ",
           eg_image_parts[4],
           "​output: ",
           "surface: smooth ",
           "score: 1.0 "
           "expain: realistic sneakers, smooth surface, soft fabric",
-          #"character: non-character ",
+          "character: non-character ",
           "input:  ",
           eg_image_parts[5],
           "​output: ",
           "surface: unknown ",
           "score: 0.8 "
           "expain: smooth human body, sharp angle contact;",
-          #"character: character-static ",
+          "character: character-static ",
           "input:  ",                    
         ]
         prompt_parts += image_parts
