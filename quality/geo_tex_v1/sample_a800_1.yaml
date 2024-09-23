@@ -1,0 +1,61 @@
+apiVersion: kubeflow.org/v1
+kind: PyTorchJob
+metadata:
+  name: yzp-quality-feat-a800-1
+spec:
+  pytorchReplicaSpecs:
+    Master:
+      replicas: 1
+      restartPolicy: Never
+      template:
+        spec:
+          containers:
+          - command:
+            - /bin/bash
+            - -c
+            - sleep infinity
+            #- cd /mnt/pfs/users/yuzhipeng/workspace/10M3D && sh run.sh 
+            env:
+            - name: NCCL_DEBUG
+              value: INFO
+            - name: NCCL_IB_DISABLE
+              value: '0'
+            - name: LOCAL_RANK
+              value: '0'
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: "compute,utility"
+            image: ccr-23gxup9u-vpc.cnc.bj.baidubce.com/model/torch211_trt861_py310_t2i:v7
+            name: pytorch
+            resources:
+              limits:
+                #baidu.com/rtx_4090_cgpu: '4'
+                baidu.com/a800_80g_cgpu: "1" # gpu资源有限，如无需要，建议设置为1。
+                #rdma/hca: 1
+              requests:
+                #baidu.com/rtx_4090_cgpu: '4'
+                baidu.com/a800_80g_cgpu: "1" # gpu资源有限，如无需要，建议设置为1。
+                #rdma/hca: 1
+            securityContext:
+              capabilities:
+                add:
+                - IPC_LOCK
+            volumeMounts:
+            - mountPath: /mnt/pfs
+              name: pfs
+            - mountPath: /dev/shm
+              name: cache-volume
+          imagePullSecrets:
+          - name: vast-secret
+          priorityClassName: normal
+          schedulerName: volcano
+          volumes:
+          - hostPath:
+              path: /mnt/pfs
+            name: pfs
+          - emptyDir:
+              medium: Memory
+            name: cache-volume
+  runPolicy:
+    schedulingPolicy:
+      priorityClass: high
+      queue: default
