@@ -278,8 +278,8 @@ def load_data(filename: str, with_label=True) -> List[str]:
         tex_scores = []
         for uuid, geo_score, tex_score in [line.strip().split() for line in open(filename, 'r')]:
             uuids.append(uuid)
-            geo_scores.append(float(geo_score))
-            tex_scores.append(float(tex_score))
+            geo_scores.append(float(geo_score)-1)
+            tex_scores.append(float(tex_score)-1)
         return uuids, geo_scores, tex_scores
 
     elif filename.endswith(".json"):
