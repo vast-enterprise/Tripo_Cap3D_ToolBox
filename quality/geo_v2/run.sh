@@ -1,0 +1,1 @@
+python predict.py  --input /mnt/pfs/users/wangdehu/Tripo_Cap3D_ToolBox/quality/gs_1_batch_4view_success.txt --input_features /mnt/pfs/users/wangdehu/Tripo_Cap3D_ToolBox/quality/gs_1_100w_source.txt.rgb.bin.npy --output res.txt
